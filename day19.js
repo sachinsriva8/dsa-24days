@@ -80,8 +80,52 @@ let missingNumbers = (arr) => {
 console.log(missingNumbers([1, 2, 6]));
 
 // ques-3
+// Adding an elements to the array when elements are consecutive numbers upto 10
 
-//[5,3,4,6]==> min=3 max=6
+// inputA = [1, 2, 3, 4];
+// Output=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+// inputB = [4, 2, 4, 3, 1];
+// Output=("Not a consecutive since 4 is repeating");
+
+// inputC = [10, 8, 6, 7, 9]
+// output= [10, 8, 6, 7, 9] --> no change since value is till 10.
+/**
+ * 
+ * @param {Array[Number]} arr 
+ * @step1 create a function to take input from user.
+ * @step2 sort the data in ascending order.
+ * @step3 check if max value of array is less than 11.
+ * @step4 runa for loop form i=0 till i<arr.length and
+ *        check if difference b/w two consecutive element is greater than 1 than show error message that not consecutive number array.
+ *        check if element is repeated, if true retrn error message Not a consecutive since element is repeating.
+ * @step5 run a for loop from i=max_value of array till i<=10 and push i in arr. return arr.
+ * @step6 return error message Array should have values less than or equal to 10.
+ */
+let addElementToArray=(arr)=>{
+  arr.sort((a,b)=>a-b);
+  if(arr[arr.length-1]<=10){
+    for(let i=0; i<arr.length-1;i++){
+      if ((arr[i+1]-arr[i])>1){
+        return `Not a consecutive numbers since difference b/w ${arr[i+1]} & ${arr[i]} is greater than 1`
+      }
+      if((arr[i+1]-arr[i])==0){
+        return `Not a consecutive since ${arr[i]} is repeating`;
+      }
+    }
+    for(let i=arr[arr.length-1]+1;i<=10;i++){
+      arr.push(i);
+    }
+    return arr;
+  }
+  return `Array should have values less than or equal to 10`
+}
+
+console.log(addElementToArray([1, 2, 3, 4]));
+console.log(addElementToArray([4, 2, 4, 3, 1]));
+console.log(addElementToArray([10, 8, 6, 7, 9]));
+console.log(addElementToArray([10, 8, 6, 7, 9, 11, 12]));
+
 
 // ques-4
 // Create a new array by adding one to each elements of the existing array
